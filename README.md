@@ -1,86 +1,60 @@
 # viscatest
 
-`viscatest` is a .NET console application that communicates with a SONY VISCA-compatible camera via a serial (COM) port. This application allows the user to control camera zoom, focus, and iris settings using keyboard inputs. The zoom operates at maximum speed, and the program uses standard VISCA protocol commands.
+**viscatest** is a .NET console application designed to communicate with SONY VISCA-compatible cameras via a serial (COM) port. The application allows users to control camera zoom, focus, and iris settings using simple keyboard inputs. The zoom functionality operates at maximum speed, and all communication is based on standard VISCA protocol commands.
 
-## Features
+**Note**: This is a work-in-progress project and is not production-ready.
 
-- **Zoom Control**: 
-  - Zoom in at maximum speed using the `+` key.
-  - Zoom out at maximum speed using the `-` key.
-  - Stop zoom using the `Z` key.
-  
-- **Focus Control**: 
-  - Focus far using the `F` key.
-  - Focus near using the `N` key.
-  - Stop focus using the `X` key.
+## Prerequisites
 
-- **Iris Control**: 
-  - Increase iris using the `I` key.
-  - Decrease iris using the `K` key.
-
-- **Camera Connection Test**: 
-  - The application sends an inquiry command to the camera on startup to verify communication.
-
-## Requirements
-
-- .NET 6.0 SDK or higher
+- .NET 8.0 SDK or higher
+- Visual Studio 2022 or later
+- **NuGet Package**: `System.IO.Ports`
 - Serial (COM) port connected to a SONY VISCA-compatible camera
-- Windows or Linux machine with a serial port or USB-to-serial adapter
 
-## How to Use
+## Installation and Setup
 
-1. **Clone the repository:**
-
-    ```bash
-    git clone https://github.com/newmatik/viscatest.git
-    cd viscatest
-    ```
-
-2. **Open the project in Visual Studio** or build the application from the command line using the .NET CLI:
-
-    ```bash
-    dotnet build
-    ```
-
-3. **Run the application**:
-
-    Ensure the camera is connected to the specified COM port (default is `COM5`, but you can modify it in the source code).
-
-    ```bash
-    dotnet run
-    ```
-
-4. **Control the Camera**:
-
-    After the connection is established, the application will display a list of available commands:
+1. Clone the repository to your local machine.
+2. Open the project in **Visual Studio 2022**.
+3. Install the required NuGet package `System.IO.Ports`. You can do this via the **NuGet Package Manager** or run the following command in the **Package Manager Console**:
 
     ```
-    === Camera Control Commands ===
-    Press + to Zoom In (Maximum Speed)
-    Press - to Zoom Out (Maximum Speed)
-    Press Z to Stop Zoom
-    Press F to Focus Far
-    Press N to Focus Near
-    Press X to Stop Focus
-    Press I to Increase Iris
-    Press K to Decrease Iris
-    Press ESC to exit
-    =================================
+    Install-Package System.IO.Ports
     ```
 
-5. **Exit** the application by pressing the `ESC` key.
+4. **Note**: The COM port is hardcoded to `COM5` in the application. You may need to change this based on your setup.
 
-## Configuration
+## How to Run
 
-If your camera is connected to a different COM port, modify the following line in the `Main` method:
+1. Open the solution in **Visual Studio 2022**.
+2. Build the solution (`Ctrl + Shift + B`).
+3. Run the project (`F5`).
 
-```csharp
-_serialPort = new SerialPort("COM5", 9600, Parity.None, 8, StopBits.One);
+## Key Bindings
+
+| Key   | Action                          |
+|-------|---------------------------------|
+| `+`   | Zoom in at maximum speed        |
+| `-`   | Zoom out at maximum speed       |
+| `Z`   | Stop zoom                       |
+| `F`   | Focus far                       |
+| `N`   | Focus near                      |
+| `X`   | Stop focus                      |
+| `I`   | Increase iris                   |
+| `K`   | Decrease iris                   |
+| `ESC` | Exit the application            |
+
+## Known Issues
+
+- **Command Piling**: Commands may pile up if keys are held down too long.
+- **COM Port**: The COM port is hardcoded to `COM5`. Users need to change this manually if their machine is connected to a different port.
+- **Work in Progress**: The project is still in development and is not production-ready.
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+This project is licensed under the MIT License.
 
 ## Copyright
 
-(c) Newmatik GmbH
+Copyright (c) 2024 Newmatik GmbH  
+Am Markt 1, 55619 Hennweiler, Germany  
+software@newmatik.com, www.newmatik.com
